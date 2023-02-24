@@ -2,11 +2,13 @@ package com.example.rickandmorty.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.RowItemBinding
 import com.squareup.picasso.Picasso
 
-class adapter(val list: ArrayList<com.example.rickandmorty.CharacterModel.Result>) :
+class adapter(var list: ArrayList<com.example.rickandmorty.CharacterModel.Result>) :
     RecyclerView.Adapter<adapter.Holder>() {
 
     class Holder(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -28,5 +30,10 @@ class adapter(val list: ArrayList<com.example.rickandmorty.CharacterModel.Result
         Picasso.get().load(image).into(holder.binding.image)
         holder.binding.text.text = list.get(position).name
 
+    }
+
+    fun getFilter(newlist: ArrayList<com.example.rickandmorty.CharacterModel.Result>) {
+        list=newlist
+        notifyDataSetChanged()
     }
 }
