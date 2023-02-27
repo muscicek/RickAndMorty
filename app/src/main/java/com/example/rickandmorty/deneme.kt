@@ -1,35 +1,43 @@
 package com.example.rickandmorty
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.Menu
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
+import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.rickandmorty.CharacterModel.Result
 import com.example.rickandmorty.adapter.adapter
-import com.example.rickandmorty.databinding.ActivityMainBinding
+import com.example.rickandmorty.databinding.FragmentDenemeBinding
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity() {
+
+class deneme : Fragment() {
+
+
     private var job: Job? = null
     private lateinit var recyc: adapter
-    private lateinit var binding: ActivityMainBinding
     private lateinit var newCharacterArray: ArrayList<com.example.rickandmorty.CharacterModel.Result>
     private lateinit var characterArray: ArrayList<com.example.rickandmorty.CharacterModel.Result>
+
+    private lateinit var binding: FragmentDenemeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        /*binding.grid.layoutManager = GridLayoutManager(this, 2)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        binding = FragmentDenemeBinding.inflate(inflater, container, false)
+        binding.grid.layoutManager = GridLayoutManager(activity, 2)
         val api = Retrofit.Builder().baseUrl("https://rickandmortyapi.com/")
             .addConverterFactory(GsonConverterFactory.create()).build()
             .create(helper::class.java)
@@ -81,9 +89,15 @@ class MainActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {}
 
-        })*/
+        })
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
     }
 
-
 }
+

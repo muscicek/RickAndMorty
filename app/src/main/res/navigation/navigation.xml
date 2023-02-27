@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/deneme">
+    <fragment
+        android:id="@+id/deneme"
+        android:name="com.example.rickandmorty.deneme"
+        android:label="fragment_deneme"
+        tools:layout="@layout/fragment_deneme" >
+        <action
+            android:id="@+id/action_deneme_to_characterView"
+            app:destination="@id/characterView" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterView"
+        android:name="com.example.rickandmorty.characterView"
+        android:label="fragment_character_view"
+        tools:layout="@layout/fragment_character_view" />
+</navigation>
