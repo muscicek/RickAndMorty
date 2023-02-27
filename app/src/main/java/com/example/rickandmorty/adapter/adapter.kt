@@ -2,8 +2,6 @@ package com.example.rickandmorty.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.RowItemBinding
 import com.squareup.picasso.Picasso

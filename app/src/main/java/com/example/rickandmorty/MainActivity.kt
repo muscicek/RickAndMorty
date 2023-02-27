@@ -2,6 +2,8 @@ package com.example.rickandmorty
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             .create(helper::class.java)
 
         characterArray = ArrayList<Result>()
-
+        newCharacterArray = ArrayList<com.example.rickandmorty.CharacterModel.Result>()
 
         //Fetch data
         job = CoroutineScope(Dispatchers.IO).launch {
@@ -57,44 +59,30 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        //search
+        binding.editTextTextPersonName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        newCharacterArray = ArrayList<com.example.rickandmorty.CharacterModel.Result>()
-
-        val searchItem = menu?.findItem(R.id.search)
-        val searchView = searchItem?.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 newCharacterArray.clear()
-                if (newText != null) {
-                    for (i in characterArray) {
+                for (i in characterArray) {
 
-                        if (i.name.lowercase().contains(newText.lowercase())) {
-                            newCharacterArray.add(i)
-                        }
+                    if (i.name.lowercase().contains(s.toString().lowercase())) {
+                        newCharacterArray.add(i)
                     }
                 }
-                if (newText == "") {
+                if (s.toString() == "") {
                     recyc.getFilter(characterArray)
                 }
                 if (newCharacterArray.isNotEmpty()) {
                     recyc.getFilter(newCharacterArray)
                 }
-                return false
-
             }
 
+            override fun afterTextChanged(s: Editable?) {}
 
         })
-        return true
+
     }
 
 
