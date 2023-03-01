@@ -1,16 +1,13 @@
 package com.example.rickandmorty.adapter
 
-import android.text.Layout.Directions
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rickandmorty.R
-import com.example.rickandmorty.databinding.FragmentDenemeBinding
 import com.example.rickandmorty.databinding.RowItemBinding
+import com.example.rickandmorty.denemeDirections
 import com.squareup.picasso.Picasso
-
 
 class adapter(var list: ArrayList<com.example.rickandmorty.CharacterModel.Result>) :
     RecyclerView.Adapter<adapter.Holder>() {
@@ -36,16 +33,20 @@ class adapter(var list: ArrayList<com.example.rickandmorty.CharacterModel.Result
 
 
         holder.itemView.setOnClickListener {
-            it.findNavController().navigate(R.id.action_deneme_to_characterView)
+
+            Log.d("message", list.get(position).id.toString())
+
+            val action= denemeDirections.actionDenemeToCharacterView(list.get(position).id)
+
+            Navigation.findNavController(it).navigate(action)
+
         }
-
-
 
 
     }
 
     fun getFilter(newlist: ArrayList<com.example.rickandmorty.CharacterModel.Result>) {
-        list=newlist
+        list = newlist
         notifyDataSetChanged()
     }
 }

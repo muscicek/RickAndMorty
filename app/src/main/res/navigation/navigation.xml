@@ -17,5 +17,9 @@
         android:id="@+id/characterView"
         android:name="com.example.rickandmorty.characterView"
         android:label="fragment_character_view"
-        tools:layout="@layout/fragment_character_view" />
+        tools:layout="@layout/fragment_character_view" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>
