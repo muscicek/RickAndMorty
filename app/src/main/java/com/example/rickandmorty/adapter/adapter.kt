@@ -31,12 +31,23 @@ class adapter(var list: ArrayList<com.example.rickandmorty.CharacterModel.Result
         Picasso.get().load(image).into(holder.binding.image)
         holder.binding.text.text = list.get(position).name
 
-
         holder.itemView.setOnClickListener {
 
-            Log.d("message", list.get(position).id.toString())
+            val name = list.get(position).name
+            val status = list.get(position).status
+            val species = list.get(position).species
+            val locationName = list.get(position).location.name
+            val image = list.get(position).image
 
-            val action= denemeDirections.actionDenemeToCharacterView(list.get(position).id)
+
+            val action =
+                denemeDirections.actionDenemeToCharacterView(
+                    image,
+                    name,
+                    status,
+                    species,
+                    locationName
+                )
 
             Navigation.findNavController(it).navigate(action)
 
